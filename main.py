@@ -13,6 +13,8 @@ def count_characters(book):
                 character_count[char] += 1
     return character_count
 
+def sort_on(val):
+    return val[1]
 def get_book_text(book_filepath):
     with open(book_filepath) as f:
         file_contents = f.read()
@@ -25,8 +27,15 @@ def main():
     
     characters_count = count_characters(book_text)
 
-    print(f"The number of words in the book is {words_count}")
-    print(f"The number ocurrences of each character is {characters_count}")
 
+    print("--- Begin Report of books/frankestein.txt ---")
+    print(f"{words_count} words found in the document")
+    print(" ")
+    characters_count = list(characters_count.items())
+    characters_count.sort(key = sort_on, reverse = True)
+    for pair in characters_count:
+        if pair[0].isalpha():
+            print(f"The '{pair[0]}' character was found {pair[1]} times")
+    print("--- End Report ---")
 
 main()
