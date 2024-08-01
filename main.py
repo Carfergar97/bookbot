@@ -1,11 +1,17 @@
 def count_words(book):
     words = book.split()
-    word_count = len(words)
-    return word_count
-def main():
-    with open("books/frankestein.txt") as f:
+    return  len(words)
+
+def get_book_text(book_filepath):
+    with open(book_filepath) as f:
         file_contents = f.read()
-        word_count = count_words(file_contents)
-        print(f"The word count is : {word_count}")
+    return file_contents
+
+def main():
+    book_text = get_book_text("books/frankestein.txt")
+
+    words_count = count_words(book_text)
+    
+    print(f"The number of words in the book is {words_count}")
 
 main()
